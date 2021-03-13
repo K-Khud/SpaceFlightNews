@@ -9,21 +9,25 @@
 /* Begin PBXBuildFile section */
 		02EC2A1125FCD28E00462D2D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02EC2A1025FCD28E00462D2D /* AppDelegate.swift */; };
 		02EC2A1325FCD28E00462D2D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02EC2A1225FCD28E00462D2D /* SceneDelegate.swift */; };
-		02EC2A1525FCD28E00462D2D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02EC2A1425FCD28E00462D2D /* ViewController.swift */; };
-		02EC2A1825FCD28E00462D2D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 02EC2A1625FCD28E00462D2D /* Main.storyboard */; };
 		02EC2A1A25FCD28F00462D2D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 02EC2A1925FCD28F00462D2D /* Assets.xcassets */; };
 		02EC2A1D25FCD28F00462D2D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 02EC2A1B25FCD28F00462D2D /* LaunchScreen.storyboard */; };
+		02EC2A2825FD407E00462D2D /* SpaceCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02EC2A2725FD407E00462D2D /* SpaceCollectionViewController.swift */; };
+		02EC2A2E25FD5ABA00462D2D /* SpaceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02EC2A2D25FD5ABA00462D2D /* SpaceCell.swift */; };
+		02EC2A3125FD5D4A00462D2D /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02EC2A3025FD5D4A00462D2D /* Model.swift */; };
+		02EC2A3425FD5E1C00462D2D /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02EC2A3325FD5E1C00462D2D /* Repository.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		02EC2A0D25FCD28E00462D2D /* SpaceFlightNews.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SpaceFlightNews.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		02EC2A1025FCD28E00462D2D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		02EC2A1225FCD28E00462D2D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		02EC2A1425FCD28E00462D2D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		02EC2A1725FCD28E00462D2D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		02EC2A1925FCD28F00462D2D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		02EC2A1C25FCD28F00462D2D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		02EC2A1E25FCD28F00462D2D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		02EC2A2725FD407E00462D2D /* SpaceCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpaceCollectionViewController.swift; sourceTree = "<group>"; };
+		02EC2A2D25FD5ABA00462D2D /* SpaceCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpaceCell.swift; sourceTree = "<group>"; };
+		02EC2A3025FD5D4A00462D2D /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
+		02EC2A3325FD5E1C00462D2D /* Repository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Repository.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,13 +62,39 @@
 			children = (
 				02EC2A1025FCD28E00462D2D /* AppDelegate.swift */,
 				02EC2A1225FCD28E00462D2D /* SceneDelegate.swift */,
-				02EC2A1425FCD28E00462D2D /* ViewController.swift */,
-				02EC2A1625FCD28E00462D2D /* Main.storyboard */,
+				02EC2A3625FD5E7800462D2D /* Models */,
+				02EC2A3825FD5E9300462D2D /* Views */,
+				02EC2A3A25FD5E9B00462D2D /* Controllers */,
 				02EC2A1925FCD28F00462D2D /* Assets.xcassets */,
 				02EC2A1B25FCD28F00462D2D /* LaunchScreen.storyboard */,
 				02EC2A1E25FCD28F00462D2D /* Info.plist */,
 			);
 			path = SpaceFlightNews;
+			sourceTree = "<group>";
+		};
+		02EC2A3625FD5E7800462D2D /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				02EC2A3025FD5D4A00462D2D /* Model.swift */,
+				02EC2A3325FD5E1C00462D2D /* Repository.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		02EC2A3825FD5E9300462D2D /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				02EC2A2D25FD5ABA00462D2D /* SpaceCell.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		02EC2A3A25FD5E9B00462D2D /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				02EC2A2725FD407E00462D2D /* SpaceCollectionViewController.swift */,
+			);
+			path = Controllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -77,6 +107,7 @@
 				02EC2A0925FCD28D00462D2D /* Sources */,
 				02EC2A0A25FCD28D00462D2D /* Frameworks */,
 				02EC2A0B25FCD28D00462D2D /* Resources */,
+				02EC2A2A25FD468700462D2D /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -126,34 +157,48 @@
 			files = (
 				02EC2A1D25FCD28F00462D2D /* LaunchScreen.storyboard in Resources */,
 				02EC2A1A25FCD28F00462D2D /* Assets.xcassets in Resources */,
-				02EC2A1825FCD28E00462D2D /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		02EC2A2A25FD468700462D2D /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nif which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		02EC2A0925FCD28D00462D2D /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				02EC2A1525FCD28E00462D2D /* ViewController.swift in Sources */,
+				02EC2A3125FD5D4A00462D2D /* Model.swift in Sources */,
+				02EC2A2825FD407E00462D2D /* SpaceCollectionViewController.swift in Sources */,
 				02EC2A1125FCD28E00462D2D /* AppDelegate.swift in Sources */,
+				02EC2A2E25FD5ABA00462D2D /* SpaceCell.swift in Sources */,
 				02EC2A1325FCD28E00462D2D /* SceneDelegate.swift in Sources */,
+				02EC2A3425FD5E1C00462D2D /* Repository.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		02EC2A1625FCD28E00462D2D /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				02EC2A1725FCD28E00462D2D /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		02EC2A1B25FCD28F00462D2D /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -296,7 +341,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.khudzhamkulova.SpaceFlightNews;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -315,7 +360,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.khudzhamkulova.SpaceFlightNews;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

@@ -10,7 +10,14 @@ import UIKit
 private let reuseIdentifier = "Cell"
 private let array = ["yksi", "kaksi", "kolme", "four", "five", "six", "seven", "eight", "nine"]
 
+protocol ISpaceCollectionViewController {
+	func didUpdateList(model: [NewsListElement])
+	func didFailWithError(error: Error)
+}
 final class SpaceCollectionViewController: UICollectionViewController {
+	lazy private var repository = Repository(parent: self)
+	private var news = [NewsListElement]()
+
 	init(collectionViewLayout layout: UICollectionViewFlowLayout) {
 		super.init(collectionViewLayout: layout)
 		layout.scrollDirection 			= .vertical
@@ -28,7 +35,7 @@ final class SpaceCollectionViewController: UICollectionViewController {
 
         // Register cell classes
         self.collectionView!.register(SpaceCell.self, forCellWithReuseIdentifier: reuseIdentifier)
-
+		repository.fetchNews()
         // Do any additional setup after loading the view.
     }
 
@@ -47,14 +54,14 @@ final class SpaceCollectionViewController: UICollectionViewController {
     override func numberOfSections(in collectionView: UICollectionView) -> Int {1}
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-		return array.count
+		return news.count
     }
 
     override func collectionView(
 		_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath)
 		if let spaceCell = cell as? SpaceCell {
-			spaceCell.setText(text: array[indexPath.row])
+			spaceCell.setText(text: news[indexPath.row].title ?? "no title")
 		}
         return cell
     }
@@ -99,5 +106,18 @@ extension SpaceCollectionViewController: UICollectionViewDelegateFlowLayout {
 	}
 	func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
 		return 5.0
+	}
+}
+
+extension SpaceCollectionViewController: ISpaceCollectionViewController {
+	func didUpdateList(model: [NewsListElement]) {
+		news = model
+		DispatchQueue.main.async {
+			self.collectionView.reloadData()
+		}
+	}
+
+	func didFailWithError(error: Error) {
+		print(error.localizedDescription)
 	}
 }

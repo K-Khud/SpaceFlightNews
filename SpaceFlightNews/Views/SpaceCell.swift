@@ -28,7 +28,9 @@ final class SpaceCell: UICollectionViewCell {
 		label.translatesAutoresizingMaskIntoConstraints = false
 		label.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -4).isActive = true
 		label.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 14).isActive = true
-
+		label.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -4).isActive = true
+		label.numberOfLines = 0
+		label.font = UIFont.systemFont(ofSize: 24, weight: .bold)
 		label.textColor = UIColor(red: 0.11, green: 0.14, blue: 0.16, alpha: 1.00)
 	}
 }

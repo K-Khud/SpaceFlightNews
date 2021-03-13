@@ -15,6 +15,8 @@
 		02EC2A2E25FD5ABA00462D2D /* SpaceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02EC2A2D25FD5ABA00462D2D /* SpaceCell.swift */; };
 		02EC2A3125FD5D4A00462D2D /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02EC2A3025FD5D4A00462D2D /* Model.swift */; };
 		02EC2A3425FD5E1C00462D2D /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02EC2A3325FD5E1C00462D2D /* Repository.swift */; };
+		02EC2A3D25FD634200462D2D /* SpaceFlightNewsApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02EC2A3C25FD634200462D2D /* SpaceFlightNewsApi.swift */; };
+		02EC2A4425FD642100462D2D /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02EC2A4325FD642100462D2D /* Constants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +30,8 @@
 		02EC2A2D25FD5ABA00462D2D /* SpaceCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpaceCell.swift; sourceTree = "<group>"; };
 		02EC2A3025FD5D4A00462D2D /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		02EC2A3325FD5E1C00462D2D /* Repository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Repository.swift; sourceTree = "<group>"; };
+		02EC2A3C25FD634200462D2D /* SpaceFlightNewsApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpaceFlightNewsApi.swift; sourceTree = "<group>"; };
+		02EC2A4325FD642100462D2D /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +66,8 @@
 			children = (
 				02EC2A1025FCD28E00462D2D /* AppDelegate.swift */,
 				02EC2A1225FCD28E00462D2D /* SceneDelegate.swift */,
+				02EC2A4325FD642100462D2D /* Constants.swift */,
+				02EC2A4125FD634E00462D2D /* WebService */,
 				02EC2A3625FD5E7800462D2D /* Models */,
 				02EC2A3825FD5E9300462D2D /* Views */,
 				02EC2A3A25FD5E9B00462D2D /* Controllers */,
@@ -76,7 +82,6 @@
 			isa = PBXGroup;
 			children = (
 				02EC2A3025FD5D4A00462D2D /* Model.swift */,
-				02EC2A3325FD5E1C00462D2D /* Repository.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -95,6 +100,15 @@
 				02EC2A2725FD407E00462D2D /* SpaceCollectionViewController.swift */,
 			);
 			path = Controllers;
+			sourceTree = "<group>";
+		};
+		02EC2A4125FD634E00462D2D /* WebService */ = {
+			isa = PBXGroup;
+			children = (
+				02EC2A3325FD5E1C00462D2D /* Repository.swift */,
+				02EC2A3C25FD634200462D2D /* SpaceFlightNewsApi.swift */,
+			);
+			path = WebService;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -187,12 +201,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				02EC2A3D25FD634200462D2D /* SpaceFlightNewsApi.swift in Sources */,
 				02EC2A3125FD5D4A00462D2D /* Model.swift in Sources */,
 				02EC2A2825FD407E00462D2D /* SpaceCollectionViewController.swift in Sources */,
 				02EC2A1125FCD28E00462D2D /* AppDelegate.swift in Sources */,
 				02EC2A2E25FD5ABA00462D2D /* SpaceCell.swift in Sources */,
 				02EC2A1325FCD28E00462D2D /* SceneDelegate.swift in Sources */,
 				02EC2A3425FD5E1C00462D2D /* Repository.swift in Sources */,
+				02EC2A4425FD642100462D2D /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

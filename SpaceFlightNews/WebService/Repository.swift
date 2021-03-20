@@ -11,7 +11,7 @@ protocol IRepository: AnyObject {
 	// MARK: - Methods called from SpaceViewController
 	func fetchNews()
 	// MARK: - Methods called from SpaceFlightNewsApi
-	func didReceiveData(_ data: Data)
+	func didReceiveData(_ data: Data) throws
 	// Error handling
 	func didFailWithError(error: Error)
 }
@@ -22,9 +22,9 @@ class Repository {
 	init(parent: ISpaceCollectionViewController?) {
 		self.parent 					= parent
 	}
-	private func parseJsonToNewsList(_ data: Data) -> [NewsListElement]? {
-		var newsArray = [NewsListElement]()
-		let decoder = JSONDecoder()
+	private func parseJsonToNewsList(_ data: Data) throws -> [NewsListElement] {
+		var newsArray 	= [NewsListElement]()
+		let decoder 	= JSONDecoder()
 		do {
 			let decodedData = try decoder.decode([NewsListElement].self, from: data)
 			decodedData.forEach { (item) in
@@ -41,11 +41,11 @@ class Repository {
 											   events: item.events)
 				newsArray.append(newsItem)
 			}
-			return newsArray
 		} catch {
 			parent?.didFailWithError(error: error)
-			return nil
+			throw SpaceFlightErrors.parsingError
 		}
+		return newsArray
 	}
 }
 // MARK: - IRepository Methods
@@ -57,14 +57,19 @@ extension Repository: IRepository {
 	}
 
 	// MARK: - Methods called from SpaceFlightNewsApi
-	func didReceiveData(_ data: Data) {
-		if let news = parseJsonToNewsList(data) {
-		parent?.didUpdateList(model: news)
-		} else {
-			print("error parsing data")
+	func didReceiveData(_ data: Data) throws {
+			do {
+				let news = try parseJsonToNewsList(data)
+				parent?.didUpdateList(model: news)
+			} catch {
+				throw SpaceFlightErrors.parsingError
 		}
 	}
 	func didFailWithError(error: Error) {
 		parent?.didFailWithError(error: error)
 	}
+}
+
+enum SpaceFlightErrors: Error {
+	case parsingError
 }

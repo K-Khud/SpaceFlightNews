@@ -18,37 +18,37 @@ public class SpaceFlightNewsApi {
 		self.parent = parent
 	}
 // MARK: - Private Methods
-	private func performRequest(with urlString: String, completion: @escaping (Result<Data, Error>) -> Void) {
-		if let url = URL(string: urlString) {
-			let session = URLSession(configuration: .default)
-			let request = NSMutableURLRequest(url: url,
-											  cachePolicy: .reloadIgnoringLocalAndRemoteCacheData,
-											  timeoutInterval: 60.0)
-			request.httpMethod = "GET"
-			let dataTask = session.dataTask(with: request as URLRequest,
-											completionHandler: { (data, _, error) -> Void in
-												if let error = error {
-													self.parent?.didFailWithError(error: error)
-													completion(.failure(error))
-												} else {
-													if let safeData = data {
-														completion(.success(safeData))
-													}
-												}
-											})
-			dataTask.resume()
-		}
+	func performRequest(with urlString: String, completion: @escaping (Result<Data, Error>) -> Void) {
+		guard let url 	= URL(string: urlString) else {return}
+		let session 	= URLSession(configuration: .default)
+		let request 	= NSURLRequest(url: url)
+		let dataTask	= session.dataTask(
+			with: request as URLRequest,
+			completionHandler: { (data, _, error) -> Void in
+				if let error = error {
+					self.parent?.didFailWithError(error: error)
+					completion(.failure(error))
+				} else {
+					guard let safeData = data else {return}
+					completion(.success(safeData))
+				}
+			})
+		dataTask.resume()
 	}
 }
 // MARK: - ISpaceFlightNewsApi Methods
 extension SpaceFlightNewsApi: ISpaceFlightNewsApi {
+
 	func fetchNews() {
 		performRequest(with: apiUrlString) { (result) in
 			_ = result.map { (data) in
-				if data.isEmpty {
+				guard !data.isEmpty else {
 					self.parent?.didFailWithError(error: NSError())
-				} else {
-					self.parent?.didReceiveData(data)
+					return }
+				do {
+					try self.parent?.didReceiveData(data)
+				} catch {
+					self.parent?.didFailWithError(error: NSError())
 				}
 			}
 		}

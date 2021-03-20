@@ -1,36 +1,11 @@
 //
-//  Model.swift
+//  DecodeHelpers.swift
 //  SpaceFlightNews
 //
-//  Created by Ekaterina Khudzhamkulova on 13.3.2021.
+//  Created by Ekaterina Khudzhamkulova on 14.3.2021.
 //
 
 import Foundation
-
-// MARK: - NewsListElement
-struct NewsListElement: Codable {
-	let id, title: String?
-	let url: String?
-	let imageURL: String?
-	let newsSite, summary, publishedAt, updatedAt: String?
-	let featured: Bool?
-	let launches: [Launch]?
-	let events: [JSONAny]?
-
-	enum CodingKeys: String, CodingKey {
-		case id, title, url
-		case imageURL
-		case newsSite, summary, publishedAt, updatedAt, featured, launches, events
-	}
-}
-
-// MARK: - Launch
-struct Launch: Codable {
-	let id, provider: String?
-}
-
-typealias NewsList = [NewsListElement]
-
 // MARK: - Encode/decode helpers
 
 class JSONNull: Codable, Hashable {

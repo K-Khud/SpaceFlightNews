@@ -11,11 +11,11 @@ protocol ISpaceCell {
 }
 
 final class SpaceCell: UICollectionViewCell {
-	private let label = UILabel(frame: .zero)
+	private let label 			= UILabel(frame: .zero)
 
 	override init(frame: CGRect) {
 		super.init(frame: frame)
-		self.backgroundColor = UIColor(red: 0.84, green: 0.85, blue: 0.87, alpha: 1.00)
+		self.backgroundColor 	= UIColor(red: 0.84, green: 0.85, blue: 0.87, alpha: 1.00)
 		setupLabel()
 	}
 
@@ -25,13 +25,13 @@ final class SpaceCell: UICollectionViewCell {
 
 	private func setupLabel() {
 		self.addSubview(label)
-		label.translatesAutoresizingMaskIntoConstraints = false
-		label.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -4).isActive = true
-		label.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 14).isActive = true
-		label.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -4).isActive = true
+		label.translatesAutoresizingMaskIntoConstraints 										= false
+		label.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -4).isActive 		= true
+		label.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 14).isActive 		= true
+		label.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -4).isActive 	= true
 		label.numberOfLines = 0
-		label.font = UIFont.systemFont(ofSize: 24, weight: .bold)
-		label.textColor = UIColor(red: 0.11, green: 0.14, blue: 0.16, alpha: 1.00)
+		label.font 			= UIFont.systemFont(ofSize: 24, weight: .bold)
+		label.textColor 	= UIColor(red: 0.11, green: 0.14, blue: 0.16, alpha: 1.00)
 	}
 }
 extension SpaceCell: ISpaceCell {

@@ -8,7 +8,6 @@
 import UIKit
 
 private let reuseIdentifier = "Cell"
-private let array = ["yksi", "kaksi", "kolme", "four", "five", "six", "seven", "eight", "nine"]
 
 protocol ISpaceCollectionViewController {
 	func didUpdateList(model: [NewsListElement])
@@ -16,7 +15,7 @@ protocol ISpaceCollectionViewController {
 }
 final class SpaceCollectionViewController: UICollectionViewController {
 	lazy private var repository = Repository(parent: self)
-	private var news = [NewsListElement]()
+	private var news 			= [NewsListElement]()
 
 	init(collectionViewLayout layout: UICollectionViewFlowLayout) {
 		super.init(collectionViewLayout: layout)
@@ -61,7 +60,7 @@ final class SpaceCollectionViewController: UICollectionViewController {
 		_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath)
 		if let spaceCell = cell as? SpaceCell {
-			spaceCell.setText(text: news[indexPath.row].title ?? "no title")
+			spaceCell.setText(text: news[indexPath.row].title)
 		}
         return cell
     }
@@ -104,9 +103,10 @@ extension SpaceCollectionViewController: UICollectionViewDelegateFlowLayout {
 						layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
 		return CGSize(width: view.frame.width, height: 300.0)
 	}
-	func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-		return 5.0
-	}
+	func collectionView(
+		_ collectionView: UICollectionView,
+		layout collectionViewLayout: UICollectionViewLayout,
+		minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {5.0}
 }
 
 extension SpaceCollectionViewController: ISpaceCollectionViewController {

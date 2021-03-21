@@ -89,10 +89,3 @@ extension Repository: IRepository {
 		parent?.didFailWithError(error: error)
 	}
 }
-
-enum SpaceFlightErrors: Error {
-	case parsingNewsListError
-	case decodindImageError
-	case fetchDataError
-	case itemUrlIsNil
-}

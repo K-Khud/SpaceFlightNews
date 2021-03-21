@@ -28,7 +28,7 @@ class SpaceFlightNewsModelTests: XCTestCase {
 		var responseError: Error?
 
 		let dataTask = session.dataTask(with: url!) { _, response, error in
-		  statusCode = (response as? HTTPURLResponse)?.statusCode
+		  statusCode 	= (response as? HTTPURLResponse)?.statusCode
 		  responseError = error
 		  promise.fulfill()
 		}
@@ -40,10 +40,10 @@ class SpaceFlightNewsModelTests: XCTestCase {
 	}
 
 	func testJSONParsing() throws {
-		let viewController = SpaceCollectionViewController(collectionViewLayout: UICollectionViewFlowLayout())
-		let repository = Repository(parent: viewController)
+		let viewController 	= SpaceCollectionViewController(collectionViewLayout: UICollectionViewFlowLayout())
+		let repository 		= Repository(parent: viewController)
 
-		guard let fileURL = Bundle.main.url(forResource: "TestJSON", withExtension: "json") else {
+		guard let fileURL 	= Bundle.main.url(forResource: "TestJSON", withExtension: "json") else {
 			XCTFail("Missing file: TestJSON.json")
 			return
 		}
@@ -83,5 +83,4 @@ class SpaceFlightNewsModelTests: XCTestCase {
             // Put the code you want to measure the time of here.
         }
     }
-
 }

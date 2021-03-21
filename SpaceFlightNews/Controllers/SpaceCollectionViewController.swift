@@ -11,11 +11,13 @@ private let reuseIdentifier = "Cell"
 
 protocol ISpaceCollectionViewController {
 	func didUpdateList(model: [NewsListElement])
+	func didGetImage(newImage: UIImage, newsId: String)
 	func didFailWithError(error: Error)
 }
 final class SpaceCollectionViewController: UICollectionViewController {
 	lazy private var repository = Repository(parent: self)
 	private var news 			= [NewsListElement]()
+	private var newsImages		= [String: UIImage]()
 
 	init(collectionViewLayout layout: UICollectionViewFlowLayout) {
 		super.init(collectionViewLayout: layout)
@@ -61,6 +63,16 @@ final class SpaceCollectionViewController: UICollectionViewController {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath)
 		if let spaceCell = cell as? SpaceCell {
 			spaceCell.setText(text: news[indexPath.row].title)
+			let itemId = news[indexPath.row].id
+			if let newImage = newsImages[itemId] {
+				spaceCell.setImage(newImage: newImage)
+			} else {
+				do {
+					try sendRequestForImage(newsItemUrl: news[indexPath.row].imageURL, newsId: news[indexPath.row].id)
+				} catch {
+					didFailWithError(error: error)
+				}
+			}
 		}
         return cell
     }
@@ -95,7 +107,12 @@ final class SpaceCollectionViewController: UICollectionViewController {
     
     }
     */
-
+	private func sendRequestForImage(newsItemUrl: String?, newsId: String) throws {
+		guard let itemUrl = newsItemUrl else {
+			throw SpaceFlightErrors.itemUrlIsNil
+		}
+		repository.getImage(stringUrl: itemUrl, newsId: newsId)
+	}
 }
 extension SpaceCollectionViewController: UICollectionViewDelegateFlowLayout {
 	func collectionView(
@@ -110,6 +127,13 @@ extension SpaceCollectionViewController: UICollectionViewDelegateFlowLayout {
 }
 
 extension SpaceCollectionViewController: ISpaceCollectionViewController {
+	func didGetImage(newImage: UIImage, newsId: String) {
+		DispatchQueue.main.async {
+			self.newsImages[newsId] = newImage
+			self.collectionView.reloadData()
+		}
+	}
+
 	func didUpdateList(model: [NewsListElement]) {
 		news = model
 		DispatchQueue.main.async {

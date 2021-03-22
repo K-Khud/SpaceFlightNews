@@ -11,6 +11,7 @@
 		026B6A122608A9EA00341F23 /* Mocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 026B6A112608A9EA00341F23 /* Mocks.swift */; };
 		02B5FAE02608D7BC0041FD06 /* SpaceFlightNewsModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02B5FADF2608D7BC0041FD06 /* SpaceFlightNewsModelTests.swift */; };
 		02B5FAE42608E4940041FD06 /* SpaceFlightNewsViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02B5FAE32608E4940041FD06 /* SpaceFlightNewsViewControllerTests.swift */; };
+		02B5FAEE2608ED010041FD06 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 02B5FAED2608ED010041FD06 /* README.md */; };
 		02E262C32607C18B00C37E94 /* TestImage.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 02E262C22607C18B00C37E94 /* TestImage.jpeg */; };
 		02EC2A1125FCD28E00462D2D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02EC2A1025FCD28E00462D2D /* AppDelegate.swift */; };
 		02EC2A1325FCD28E00462D2D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02EC2A1225FCD28E00462D2D /* SceneDelegate.swift */; };
@@ -42,6 +43,7 @@
 		026B6A112608A9EA00341F23 /* Mocks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mocks.swift; sourceTree = "<group>"; };
 		02B5FADF2608D7BC0041FD06 /* SpaceFlightNewsModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpaceFlightNewsModelTests.swift; sourceTree = "<group>"; };
 		02B5FAE32608E4940041FD06 /* SpaceFlightNewsViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpaceFlightNewsViewControllerTests.swift; sourceTree = "<group>"; };
+		02B5FAED2608ED010041FD06 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		02E262C22607C18B00C37E94 /* TestImage.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = TestImage.jpeg; sourceTree = "<group>"; };
 		02EC2A0D25FCD28E00462D2D /* SpaceFlightNews.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SpaceFlightNews.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		02EC2A1025FCD28E00462D2D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -84,6 +86,7 @@
 			isa = PBXGroup;
 			children = (
 				02E262C22607C18B00C37E94 /* TestImage.jpeg */,
+				02B5FAED2608ED010041FD06 /* README.md */,
 				02EC2A5C25FE661900462D2D /* TestJSON.json */,
 				02EC2A0F25FCD28E00462D2D /* SpaceFlightNews */,
 				02EC2A4F25FD704100462D2D /* SpaceFlightNewsTests */,
@@ -247,6 +250,7 @@
 			files = (
 				02EC2A1D25FCD28F00462D2D /* LaunchScreen.storyboard in Resources */,
 				02E262C32607C18B00C37E94 /* TestImage.jpeg in Resources */,
+				02B5FAEE2608ED010041FD06 /* README.md in Resources */,
 				02EC2A5D25FE661900462D2D /* TestJSON.json in Resources */,
 				02EC2A1A25FCD28F00462D2D /* Assets.xcassets in Resources */,
 			);

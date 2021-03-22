@@ -7,18 +7,29 @@
 
 import UIKit
 protocol ISpaceCell {
-	func setText(text: String)
+	func setTitle(text: String)
+	func setSummary(text: String, pageUrl: String)
+	func setPublishedLabel(text: String)
 	func setImage(newImage: UIImage)
 }
 
 final class SpaceCell: UICollectionViewCell {
-	private let label 			= UILabel(frame: .zero)
+	private let title 			= UILabel(frame: .zero)
+	private let publishedLabel	= UILabel(frame: .zero)
+
+	private let summary 		= UITextView(frame: .zero)
 	private let newsImage		= UIImageView(frame: .zero)
+	private let attributes 		= [
+		NSAttributedString.Key.font: Constants.summaryFont,
+		NSAttributedString.Key.foregroundColor: UIColor.black
+	] as [NSAttributedString.Key: Any]
 
 	override init(frame: CGRect) {
 		super.init(frame: frame)
-		self.backgroundColor 	= UIColor(red: 0.84, green: 0.85, blue: 0.87, alpha: 1.00)
-		setupLabel()
+		self.backgroundColor 	= Constants.cellBackground
+		setupSummary()
+		setupTitle()
+		setupPublishedLabel()
 		setupImage()
 	}
 
@@ -26,16 +37,39 @@ final class SpaceCell: UICollectionViewCell {
 		fatalError("init(coder:) has not been implemented")
 	}
 
-	private func setupLabel() {
-		label.numberOfLines = 0
-		label.font 			= UIFont.systemFont(ofSize: 24, weight: .bold)
-		label.textColor 	= UIColor(red: 0.11, green: 0.14, blue: 0.16, alpha: 1.00)
-		self.addSubview(label)
-		label.translatesAutoresizingMaskIntoConstraints 										= false
-		label.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -4).isActive 		= true
-		label.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 14).isActive 		= true
-		label.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -4).isActive 	= true
+	private func setupSummary() {
+		summary.isScrollEnabled 		= false
+		summary.isEditable				= false
+		summary.backgroundColor			= .clear
+		summary.dataDetectorTypes 		= .link
+		self.addSubview(summary)
+		summary.translatesAutoresizingMaskIntoConstraints 										= false
+		summary.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -4).isActive 		= true
+		summary.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 10).isActive 	= true
+		summary.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -4).isActive 	= true
 	}
+	private func setupTitle() {
+
+		title.numberOfLines = 0
+		title.font 			= Constants.titleFont
+		title.textColor 	= Constants.titleTextColor
+		self.addSubview(title)
+		title.translatesAutoresizingMaskIntoConstraints 										= false
+		title.bottomAnchor.constraint(equalTo: summary.topAnchor, constant: -4).isActive 		= true
+		title.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 14).isActive 		= true
+		title.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -4).isActive 	= true
+	}
+	private func setupPublishedLabel() {
+		publishedLabel.numberOfLines 	= 0
+		publishedLabel.font 			= Constants.publishedLabelFont
+		publishedLabel.textColor 		= .black
+		self.addSubview(publishedLabel)
+		publishedLabel.translatesAutoresizingMaskIntoConstraints 										= false
+		publishedLabel.bottomAnchor.constraint(equalTo: title.topAnchor, constant: -2).isActive 		= true
+		publishedLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 14).isActive 	= true
+		publishedLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -4).isActive 	= true
+	}
+
 	private func setupImage() {
 		newsImage.contentMode 	= .scaleAspectFill
 		newsImage.clipsToBounds = true
@@ -44,15 +78,21 @@ final class SpaceCell: UICollectionViewCell {
 		newsImage.topAnchor.constraint(equalTo: self.topAnchor, constant: 4).isActive 				= true
 		newsImage.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 4).isActive 		= true
 		newsImage.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -4).isActive 	= true
-		newsImage.bottomAnchor.constraint(equalTo: label.topAnchor, constant: -4).isActive 		= true
+		newsImage.bottomAnchor.constraint(equalTo: publishedLabel.topAnchor, constant: -2).isActive = true
 	}
 }
 extension SpaceCell: ISpaceCell {
-	func setText(text: String) {
-		label.text = text
+	func setTitle(text: String) {
+		title.text = text
+	}
+	func setSummary(text: String, pageUrl: String) {
+		let newText = "\(text)\n Details: \(pageUrl)"
+		summary.attributedText = NSAttributedString(string: newText, attributes: attributes)
+	}
+	func setPublishedLabel(text: String) {
+		publishedLabel.text = text
 	}
 	func setImage(newImage: UIImage) {
 		newsImage.image = newImage
-
 	}
 }

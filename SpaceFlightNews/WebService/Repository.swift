@@ -80,12 +80,21 @@ extension Repository: IRepository {
 			let newImage = try decodeImageFromData(data)
 			parent?.didGetImage(newImage: newImage, newsId: newsId)
 		} catch {
-
+			parent?.didFailWithError(error: error)
 		}
 	}
 
 	func didFailWithError(error: Error) {
-		// TODO: - check for error types
-		parent?.didFailWithError(error: error)
+		switch error {
+		case SpaceFlightErrors.fetchedEmptyDataError:
+			parent?.didFailWithError(error: error)
+			print("fetchedEmptyDataError")
+		case SpaceFlightErrors.parsingNewsListError: print("parsingNewsListError")
+		case SpaceFlightErrors.decodindImageError: print("decodindImageError")
+		case SpaceFlightErrors.itemUrlIsNil: print("itemUrlIsNil")
+		case SpaceFlightErrors.errorCreatingUrl: print("Could not create URL from string")
+		default:
+			print(error.localizedDescription)
+		}
 	}
 }

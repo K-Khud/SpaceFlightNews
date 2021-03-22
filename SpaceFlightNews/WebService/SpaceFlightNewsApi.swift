@@ -20,20 +20,30 @@ public class SpaceFlightNewsApi {
 	}
 // MARK: - Private Methods
 	func performRequest(with urlString: String, completion: @escaping (Result<Data, Error>) -> Void) {
-		guard let url 	= URL(string: urlString) else {return}
 		let session 	= URLSession(configuration: .default)
-		let request 	= NSURLRequest(url: url)
-		let dataTask	= session.dataTask(
-			with: request as URLRequest,
-			completionHandler: { (data, _, error) -> Void in
-				if let error = error {
-					completion(.failure(error))
-				} else {
-					guard let safeData = data else {return}
-					completion(.success(safeData))
-				}
-			})
-		dataTask.resume()
+		do {
+			let url 		= try createUrl(from: urlString)
+			let request 	= NSURLRequest(url: url)
+			let dataTask	= session.dataTask(
+				with: request as URLRequest,
+				completionHandler: { (data, _, error) -> Void in
+					if let error = error {
+						completion(.failure(error))
+					} else {
+						guard let safeData = data else {return}
+						completion(.success(safeData))
+					}
+				})
+			dataTask.resume()
+		} catch {
+			parent?.didFailWithError(error: error)
+		}
+	}
+	func createUrl(from string: String) throws -> URL {
+		guard let url 	= URL(string: string) else {
+			throw SpaceFlightErrors.errorCreatingUrl
+		}
+		return url
 	}
 }
 // MARK: - ISpaceFlightNewsApi Methods
@@ -42,7 +52,7 @@ extension SpaceFlightNewsApi: ISpaceFlightNewsApi {
 		performRequest(with: stringUrl) { (result) in
 			_ = result.map({ (data) in
 				guard !data.isEmpty else {
-					self.parent?.didFailWithError(error: SpaceFlightErrors.fetchDataError)
+					self.parent?.didFailWithError(error: SpaceFlightErrors.fetchedEmptyDataError)
 					return }
 				do {
 					try self.parent?.didReceiveImage(data, newsId: newsId)
@@ -57,7 +67,7 @@ extension SpaceFlightNewsApi: ISpaceFlightNewsApi {
 		performRequest(with: apiUrlString) { (result) in
 			_ = result.map { (data) in
 				guard !data.isEmpty else {
-					self.parent?.didFailWithError(error: SpaceFlightErrors.fetchDataError)
+					self.parent?.didFailWithError(error: SpaceFlightErrors.fetchedEmptyDataError)
 					return }
 				do {
 					try self.parent?.didReceiveData(data)
